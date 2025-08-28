@@ -21,6 +21,6 @@ from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.hello),
-    path('Adrian Quilumba/', views.about)
-]
+    path('signup/',views,signup', name='signup'),
+    
+

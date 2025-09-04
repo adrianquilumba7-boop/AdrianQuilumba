@@ -8,8 +8,14 @@
 <body>
     ><Ul>
         <li><a href="{% url 'home' % }" >Inicio</a></li>
-        <li><a href="{% url 'signup' % }" >Registro</a></li>
-        <li><a href="{% url 'task' % }" >Tareas</a></li>
+        <li><a href="{% url 'signup' % }">Registro</a></li>
+        <li><a href="{% url 'tasks' % }" >Tareas</a></li>
+        
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'signout' %}">Cerrar Sesion</a></li>
+        {% else %}
+          <li><a href="{% url 'signin' %}">Iniciar Sesion</a></li>
+        {% endif %}
         <li><a href="" >Cerrar</a></li>
     </Ul>
      {% block content %}

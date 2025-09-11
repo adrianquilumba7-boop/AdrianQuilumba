@@ -26,10 +26,17 @@ def create_task(request):
                    'create_task.html',  
                    {'form': TaskForm})
      else:
-        print(request.POST)
-        return render(request,
+        try:
+            form = TaskForm(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
+            return redirect("tasks")
+        except ValueError:
+            return render(request,
                    'create_task.html',  
-                   {'form': TaskForm})
+                   {'form': TaskForm(),
+                    'error' : 'Por favor ingresar datos validos'})
 
 def signin(request):
      if request.method == "GET":
